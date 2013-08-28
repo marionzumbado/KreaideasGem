@@ -1,0 +1,43 @@
+<h2>Editar <%= resource_name.to_s.humanize %></h2>
+
+<%= form_for(resource, :as => resource_name, :url => member_registration_path(), :html => { :method => :put }) do |f| %>
+  <%= devise_error_messages! %>
+
+  <%= image_tag resource.avatar.url %>
+
+  <div><%= f.label :name %><br />
+  <%= f.text_field :name, :autofocus => true%></div>
+
+  <div><%= f.label :email %><br />
+  <%= f.email_field :email %></div>
+
+  <div><%= f.label :phone %><br />
+  <%= f.text_field :phone %></div>
+
+  <div><%= f.label :address %><br />
+  <%= f.text_field :address %></div>
+
+  <div><%= f.label :avatar %><br />
+  <%= f.file_field :avatar %></div>
+
+  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+  <% end %>
+
+  <div><%= f.label :password %> <i>(no complete este espacio si no desea cambiar su contraseña)</i><br />
+  <%= f.password_field :password, :autocomplete => "off" %></div>
+
+  <div><%= f.label :password_confirmation %><br />
+  <%= f.password_field :password_confirmation %></div>
+
+  <div><%= f.label :current_password %> <i>(necesitamos su contraseña actual para confirmar los cambios)</i><br />
+  <%= f.password_field :current_password %></div>
+
+  <div><%= f.submit "Actualizar" %></div>
+<% end %>
+
+<h3>Cancelar mi cueta</h3>
+
+<p><%= button_to "Cancelar mi cuenta", member_registration_path(), :data => { :confirm => "ESta seguro?" }, :method => :delete %></p>
+
+<%= link_to "Atrás", :back %>
